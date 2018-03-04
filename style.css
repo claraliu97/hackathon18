@@ -208,5 +208,40 @@ border-radius: 15px;
 }
 
 
+/* Sharon */
 
+section#calendar{
+    background-image: url("img/medical.jpg");
+    min-height: 100%;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left:0;
+
+
+}
+
+section#impact{
+    background-image: url("img/medical.jpg");
+    min-height: 100%;
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left:0;
+
+
+}
+
+div.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    padding:15px;
+}
 
