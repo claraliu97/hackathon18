@@ -1,0 +1,205 @@
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica Neue', 'Calibri', Arial, sans-serif;
+  height: 100%;
+}
+#app {
+  background: #263238;
+  display: flex;
+  text-align: "center";
+  align-items: stretch;
+  justify-content: stretch;
+  height: 100%;
+}
+.hidden {
+  display: none;
+}
+.sidebar {
+  background: #eceff1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: auto;
+}
+.sidebar h2 {
+  font-weight: normal;
+  text-align: "center";
+  font-size: 15px;
+  background: #607d8b;
+  color: #fff;
+  padding: 5px;
+  margin: 0;
+}
+.sidebar ul {
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.sidebar li {
+  line-height: 175%;
+  white-space: normal;
+  overflow: hidden;
+  text-wrap: none;
+  text-overflow: ellipsis;
+}
+.cameras ul {
+  min-width: 500px;
+}
+.cameras .active {
+  font-weight: bold;
+  color: #009900;
+}
+.cameras a {
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+}
+.cameras a:hover {
+  text-decoration: underline;
+}
+.scans li {
+  padding: 10px 20px;
+}
+.scans-enter-active {
+  transition: background 3s;
+}
+.scans-enter {
+  background: yellow;
+}
+.empty {
+  font-style: italic;
+}
+.preview-container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.navbar-nav{
+  margin:auto;
+}
+
+.nav-item{
+  margin:0px 15px;
+  text-align: center;
+}
+
+.qrbutton {
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+  background-color:#ededed;
+  -moz-border-radius:15px;
+  -webkit-border-radius:15px;
+  border-radius:15px;
+  border:1px solid #d6bcd6;
+  display:inline-block;
+  cursor:pointer;
+  color:Black;
+  font-family:Arial;
+  font-size:17px;
+  padding:8px 200px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #e1e2ed;
+  margin:auto;
+  display:block;
+}
+
+h1{
+  text-align: "center";
+}
+
+/*Add pill button*/
+.addPillButton {
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+  background-color:#ededed;
+  -moz-border-radius:15px;
+  -webkit-border-radius:15px;
+  border-radius:15px;
+  border:1px solid #d6bcd6;
+  display:inline-block;
+  cursor:pointer;
+  color:Black;
+  font-family:Arial;
+  font-size:17px;
+  padding:8px 200px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #e1e2ed;
+  display: table;
+  margin: 0 auto
+}
+/*Add pill button*/
+.addPillButton:hover {
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+  background-color:#bab1ba;
+}
+
+/*Add pill button*/
+.addPillButton:active {
+  position:relative;
+  top:1px;
+  
+}
+
+/* Pill Add Modal (background) */
+.pillAddModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Pill Add Modal */
+.pillAddModal-content {
+border-radius: 15px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Pill Add Close Modal */
+.closePillAddModal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Pill Add Close Modal hover effects */
+.closePillAddModal:hover,
+.closePillAddModal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*input boxes*/
+.inputBox {
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+    border:solid 2px black;
+    padding:10px;
+
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+
+
+
+
+

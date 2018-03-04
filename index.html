@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Team Mitochondria</title>
+	<meta charset="utf-8">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> 
+</head>
+<body>
+
+	<div class="container">
+		<section id="pill-management">
+			  <div class="jumbotron" align = "center">
+			    <h1>Your Medication</h1> 
+			    <p>Edit and view your existing medication.</p> 
+			  </div>
+
+		  	<p id="drugs1" align = "center">
+			</p>
+			<p id="drugs2" align = "center">
+			</p>
+			<p id="drugs3" align = "center">
+			</p>
+			<p id="drugs4" align = "center">
+			</p>
+			<script type="text/javascript">
+			function addToCalendar() {
+				document.getElementById("drugs1").innerHTML="Drug Name: Amoxicillin";
+				document.getElementById("drugs2").innerHTML="Dosage: 775 mg";
+				document.getElementById("drugs3").innerHTML="Times per Day: 3";
+				document.getElementById("drugs4").innerHTML="Length: 10 days";
+			}
+			</script>
+			
+			<!-- This segment is the frontend for pill adding-->
+			<a href = "#" id = "addPillButton" class = "addPillButton">Manual</a>
+			
+			<!-- The Modal -->
+			<div id="pillAddModal" class="pillAddModal">
+ 				<!-- Modal content -->
+	 			<div class= "pillAddModal-content">
+ 				   <span class="closePillAddModal">&times;</span>
+ 				   <p>Please enter prescription details:</p>
+ 				   
+ 			    	Name: <input type= "text" id= "pillAddName" value= "" class = "inputBox">
+ 			    	<br>
+ 			    	
+					Dosage: <input type="text" id="pillAddDosage" value= "" class = "inputBox">
+					<br>
+					
+					Frequency: <select id = "pillAddDayFreq">
+									<option value = 0> Daily</option>
+									<option value = 1> Every Other Day</option>
+									<option value = 2> Every Three Days</option>
+									<option value = 3> Every Four Days</option>
+									<option value = 4> Every Five Days</option>
+									<option value = 5> Every Six Days</option>
+									<option value = 6> Weekly</option>
+									
+									
+								</select>
+					
+								<select id = "pillAddTimeFreq" class = >
+									<option value = 1> Once Per Day </option>
+									<option value = 2> Twice Per Day </option>
+									<option value = 3> Three Times Per Day </option>
+									<option value = 4> Four Times Per Day </option>
+									<option value = 5> Five Times Per Day </option>
+									<option value = 6> Six Times Per Day </option>
+									<option value = 7> Seven Times Per Day </option>
+									<option value = 8> Eight Times Per Day </option> 
+									<option value = 9> Nine Times Per Day </option> 
+									<option value = 10> Ten Times Per Day </option> 
+								</select>
+					<br>
+					
+					Duration: <input type="number" id = "pillAddLength" class = "inputBox" min="1" max="40">
+					<br>
+					
+					<button onclick="submitPill()" id = "submitPillButton">Submit</button>
+					
+
+				</div>
+			</div>
+			
+			<div class="col-xs-12" style="height:10px;"></div>
+
+			<script>
+				/*This section is for the pill add modal*/
+
+				// Get the modal
+				var modal = document.getElementById("pillAddModal");
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("addPillButton");
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("closePillAddModal")[0];
+				
+				//Get submit button
+				var sub = document.getElementById("submitPillButton");
+				
+
+				// When the user clicks the button, open the modal 
+				btn.onclick = function() {
+				    modal.style.display = "block";            
+				}
+	
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				    modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				    if (event.target == modal) {
+				        modal.style.display = "none";
+			  	  }
+				}
+						
+				sub.onclick = function() { 
+					alert("Your prescription has been recorded!");
+					modal.style.display = "none";
+					
+					var drugName = getElementById("pillAddName").value;
+					var drugDosage = getElementById("pillAddDosage").value;
+					var drugFreqDay = getElementById("pillAddDayFreq").value;
+					var drugFreqTime = getElementById("pillAddTimeFreq").value;
+					var drugDuration = getElementById("pillAddLength").value;
+					
+					// prescriptionObject = {"drugName": drugName, "dosage":drugDosage, "freq":drugFreqDay, "interval"drugFreqTime, "length": drugDuration};
+					
+					
+					//Export to the prescription object
+					//TODO	
+				}
+
+			</script>
+			<button type="button" class="qrbutton" data-toggle="modal" data-target="#QRScanner">QR Code
+		    </button>
+
+		    <!-- Modal -->
+		    <div class="modal fade" id="QRScanner" role="dialog">
+		      <div class="modal-dialog">
+		        <!-- Modal content-->
+		        <div class="modal-content">
+		          <div class="modal-header">
+		            <h4 class="modal-title" text-align = "center">Scan your medications' QR codes!</h4>
+		          </div>
+		          <div class="modal-body">
+		            <div id="app">
+		              <div class="sidebar">
+		                <section class="scans">
+		                  <h2>Scans</h2>
+		                  <ul v-if="scans.length === 0">
+		                    <li class="empty">No scans yet</li>
+		                  </ul>
+		                  <transition-group name="scans" tag="ul">
+		                    <li v-for="scan in scans" :key="scan.name" :title="scan.content">{{ scan.content["drugName"] + " data loaded!"}}</li>
+	               		 </transition-group>
+		                </section>
+	              	</div>
+		              <div class="preview-container">
+		                <video id="preview"></video>
+		              </div>
+	            </div>
+             	<div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="addToCalendar()">Add to calendar!</button>
+	      		</div>
+		            <script type="text/javascript" src="app.js"></script>
+		        </div>
+		      </div>
+		    </div>
+		  
+		  </div>
+
+
+
+			
+		</section>
+		<section id="calendar">
+			<h1>Calendar</h1>
+			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>
+
+			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>
+
+			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>	
+		</section>
+		<section id="visualization">
+			<h1>Visualization</h1>
+			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>
+
+			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>
+
+			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>	
+		</section>
+		<section id="impact">
+			<h1>Impact</h1>
+			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
+
+			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
+			
+			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
+		</section>
+		<section id="settings">
+			<h1>Settings</h1>
+			<p>Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings </p>
+
+			<p>Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings </p>
+
+			<p>Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings Settings </p>
+	</div>
+	<nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
+			<ul class="navbar-nav">
+				<li class="nav-item active" id="pill-management-link" onclick=select("pill-management")>
+					<a class="nav-link" href="#"><i class="fas fa-pills fa-2x"></i></a>
+				</li>
+				<li class="nav-item" id="calendar-link" onclick=select("calendar")>
+					<a class="nav-link" href="#"><i class="fas fa-clipboard-list fa-2x"></i></a>
+				</li>
+				<li class="nav-item" id="visualization-link" onclick=select("visualization")>
+					<a class="nav-link" href="#"><i class="fas fa-male fa-2x"></i></a>
+				</li>
+				<li class="nav-item" id="impact-link" onclick=select("impact")>
+					<a class="nav-link" href="#"><i class="fas fa-chart-line fa-2x"></i></a>
+				</li>
+				<li class="nav-item" id="settings-link" onclick=select("settings")>
+					<a class="nav-link" href="#"><i class="fas fa-cog fa-2x"></i></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+	</script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
+	</script> 
+	<script src="manualscript.js">
+	</script>
+</body>
+</html>
