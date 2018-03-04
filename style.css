@@ -142,7 +142,7 @@ h1{
 .addPillButton:active {
   position:relative;
   top:1px;
-  
+
 }
 
 /* Pill Add Modal (background) */
@@ -198,7 +198,14 @@ border-radius: 15px;
     padding: 10px;
 }
 
+/* Clara part */
+.swal-button--snooze, .swal-button--snooze2 {
+  background-color: #FFCD0D;
+}
 
+.swal-button--no {
+  background-color: #929492;
+}
 
 
 

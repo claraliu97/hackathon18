@@ -9,15 +9,16 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
-    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script> 
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
 	<div class="container">
 		<section id="pill-management">
 			  <div class="jumbotron" align = "center">
-			    <h1>Your Medication</h1> 
-			    <p>Edit and view your existing medication.</p> 
+			    <h1>Your Medication</h1>
+			    <p>Edit and view your existing medication.</p>
 			  </div>
 
 		  	<p id="drugs1" align = "center">
@@ -36,23 +37,23 @@
 				document.getElementById("drugs4").innerHTML="Length: 10 days";
 			}
 			</script>
-			
+
 			<!-- This segment is the frontend for pill adding-->
 			<a href = "#" id = "addPillButton" class = "addPillButton">Manual</a>
-			
+
 			<!-- The Modal -->
 			<div id="pillAddModal" class="pillAddModal">
  				<!-- Modal content -->
 	 			<div class= "pillAddModal-content">
  				   <span class="closePillAddModal">&times;</span>
  				   <p>Please enter prescription details:</p>
- 				   
+
  			    	Name: <input type= "text" id= "pillAddName" value= "" class = "inputBox">
  			    	<br>
- 			    	
+
 					Dosage: <input type="text" id="pillAddDosage" value= "" class = "inputBox">
 					<br>
-					
+
 					Frequency: <select id = "pillAddDayFreq">
 									<option value = 0> Daily</option>
 									<option value = 1> Every Other Day</option>
@@ -61,10 +62,10 @@
 									<option value = 4> Every Five Days</option>
 									<option value = 5> Every Six Days</option>
 									<option value = 6> Weekly</option>
-									
-									
+
+
 								</select>
-					
+
 								<select id = "pillAddTimeFreq" class = >
 									<option value = 1> Once Per Day </option>
 									<option value = 2> Twice Per Day </option>
@@ -73,21 +74,21 @@
 									<option value = 5> Five Times Per Day </option>
 									<option value = 6> Six Times Per Day </option>
 									<option value = 7> Seven Times Per Day </option>
-									<option value = 8> Eight Times Per Day </option> 
-									<option value = 9> Nine Times Per Day </option> 
-									<option value = 10> Ten Times Per Day </option> 
+									<option value = 8> Eight Times Per Day </option>
+									<option value = 9> Nine Times Per Day </option>
+									<option value = 10> Ten Times Per Day </option>
 								</select>
 					<br>
-					
+
 					Duration: <input type="number" id = "pillAddLength" class = "inputBox" min="1" max="40">
 					<br>
-					
+
 					<button onclick="submitPill()" id = "submitPillButton">Submit</button>
-					
+
 
 				</div>
 			</div>
-			
+
 			<div class="col-xs-12" style="height:10px;"></div>
 
 			<script>
@@ -101,16 +102,16 @@
 
 				// Get the <span> element that closes the modal
 				var span = document.getElementsByClassName("closePillAddModal")[0];
-				
+
 				//Get submit button
 				var sub = document.getElementById("submitPillButton");
-				
 
-				// When the user clicks the button, open the modal 
+
+				// When the user clicks the button, open the modal
 				btn.onclick = function() {
-				    modal.style.display = "block";            
+				    modal.style.display = "block";
 				}
-	
+
 				// When the user clicks on <span> (x), close the modal
 				span.onclick = function() {
 				    modal.style.display = "none";
@@ -122,22 +123,23 @@
 				        modal.style.display = "none";
 			  	  }
 				}
-						
-				sub.onclick = function() { 
+
+				sub.onclick = function() {
 					alert("Your prescription has been recorded!");
 					modal.style.display = "none";
-					
+
+/*
 					var drugName = getElementById("pillAddName").value;
 					var drugDosage = getElementById("pillAddDosage").value;
 					var drugFreqDay = getElementById("pillAddDayFreq").value;
 					var drugFreqTime = getElementById("pillAddTimeFreq").value;
 					var drugDuration = getElementById("pillAddLength").value;
-					
+*/
 					// prescriptionObject = {"drugName": drugName, "dosage":drugDosage, "freq":drugFreqDay, "interval"drugFreqTime, "length": drugDuration};
-					
-					
+					createPrescription("Amoxicillin","775mg",0,3,10)
+
 					//Export to the prescription object
-					//TODO	
+					//TODO
 				}
 
 			</script>
@@ -176,12 +178,12 @@
 		        </div>
 		      </div>
 		    </div>
-		  
+
 		  </div>
 
 
 
-			
+
 		</section>
 		<section id="calendar">
 			<h1>Calendar</h1>
@@ -189,7 +191,7 @@
 
 			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>
 
-			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>	
+			<p>Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar Calendar </p>
 		</section>
 		<section id="visualization">
 			<h1>Visualization</h1>
@@ -197,14 +199,14 @@
 
 			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>
 
-			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>	
+			<p>Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization Visualization </p>
 		</section>
 		<section id="impact">
 			<h1>Impact</h1>
 			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
 
 			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
-			
+
 			<p>Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact Impact </p>
 		</section>
 		<section id="settings">
@@ -236,9 +238,9 @@
 		</div>
 	</nav>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
-	</script> 
+	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js">
-	</script> 
+	</script>
 	<script src="manualscript.js">
 	</script>
 </body>
